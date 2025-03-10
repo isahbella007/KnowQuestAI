@@ -139,7 +139,6 @@ export default function HomeFuture() {
                     mb: 2,
                     color: '#333',
                     fontWeight: 700,
-                    
                   }}
                 >
                   Smart, Engaging & Fun Learning
@@ -158,25 +157,34 @@ export default function HomeFuture() {
               </Box>
             </m.div>
 
-            {/* Feature rows with alternating layout */}
-            {features.map((feature, index) => (
-              <m.div key={index} variants={varFade().inUp}>
-                <FeatureRowStyle 
-                  container 
-                  spacing={4} 
-                  alignItems="center"
-                  direction={index % 2 === 0 ? 'row' : 'row-reverse'}
-                >
-                  {/* Text Content */}
-                  <Grid item xs={12} md={6}>
-                    <Stack spacing={3}>
-                      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+
+            {/* Feature Grid - First Two Features Side by Side */}
+            <m.div variants={varFade().inUp}>
+              <Grid container spacing={4} sx={{ mb: { xs: 4, md: 10 } }}>
+                {features.slice(0, 2).map((feature, index) => (
+                  <Grid item xs={12} sm={6} key={index}>
+                    <Box
+                      sx={{
+                        p: 3,
+                        height: '100%',
+                        borderRadius: 2,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        boxShadow: '0 12px 24px rgba(0,0,0,0.1)',
+                        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                        '&:hover': {
+                          transform: 'translateY(-8px)',
+                          // boxShadow: '0 12px 24px rgba(0,0,0,0.1)',
+                        },
+                        bgcolor: 'background.paper',
+                      }}
+                    >
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                         <Box
                           sx={{
-                            width: 56,
-                            height: 56,
-                            flexShrink: 0,
-                            borderRadius: '12px',
+                            width: 48,
+                            height: 48,
+                            borderRadius: '10px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -186,77 +194,146 @@ export default function HomeFuture() {
                         >
                           <Iconify
                             icon={feature.icon}
-                            width={28}
-                            height={28}
+                            width={24}
+                            height={24}
                             sx={{ color: feature.color }}
                           />
                         </Box>
-                        <Typography variant="h4" sx={{
-                             color: feature.color, 
-                             fontWeight: 600, 
-                             
-                             }}>
-                          {feature.subtitle}
+                        <Typography variant="h5" sx={{ color: feature.color, fontWeight: 600 }}>
+                          {feature.title}
                         </Typography>
                       </Box>
-                      
-                      {/* <Typography variant="h4" sx={{ fontWeight: 700, color: 'text.primary' }}>
-                        {feature.title}
-                      </Typography> */}
-                      
-                      <Typography variant="h5" sx={{ 
-                        color: 'text.secondary',
-                         fontWeight: 300
-                        }}>
+                      <Typography variant="body1" sx={{ color: 'text.secondary', mb: 2 }}>
                         {feature.description}
                       </Typography>
-                    </Stack>
+                    </Box>
                   </Grid>
-                  
-                  {/* Illustration */}
-                  <Grid item xs={12} md={6}>
-                    <IllustrationContainer>
+                ))}
+              </Grid>
+            </m.div>
+
+            {/* Add Third Feature in a Single Column */}
+            <m.div variants={varFade().inUp}>
+              <Grid container spacing={4} sx={{ mb: { xs: 4, md: 10 } }}>
+                <Grid item xs={12}>
+                  <Box
+                    sx={{
+                      p: 3,
+                      height: '100%',
+                      borderRadius: 2,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      boxShadow: '0 12px 24px rgba(0,0,0,0.1)',
+                      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                      '&:hover': {
+                        transform: 'translateY(-8px)',
+                      },
+                      bgcolor: 'background.paper',
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                       <Box
-                        component="img"
-                        src={feature.image}
-                        alt={feature.title}
                         sx={{
-                          width: '100%',
-                          maxWidth: 450,
-                          height: 'auto',
-                          filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.15))',
-                          borderRadius: '16px',
-                          transition: 'transform 0.3s ease-in-out',
-                          '&:hover': {
-                            transform: 'scale(1.03)',
-                          },
+                          width: 48,
+                          height: 48,
+                          borderRadius: '10px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          background: `${features[2].color}15`,
+                          mr: 2,
                         }}
-                      />
-                      
-                      {/* Decorative elements specific to each feature */}
-                      {index === 0 && (
+                      >
+                        <Iconify
+                          icon={features[2].icon}
+                          width={24}
+                          height={24}
+                          sx={{ color: features[2].color }}
+                        />
+                      </Box>
+                      <Typography variant="h5" sx={{ color: features[2].color, fontWeight: 600 }}>
+                        {features[2].title}
+                      </Typography>
+                    </Box>
+                    <Typography variant="body1" sx={{ color: 'text.secondary', mb: 2 }}>
+                      {features[2].description}
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </m.div>
+
+            {/* Full-width Feature with Image Overlay */}
+            <m.div variants={varFade().inUp}>
+              <Box
+                sx={{
+                  position: 'relative',
+                  height: { xs: 400, md: 500 },
+                  borderRadius: 4,
+                  overflow: 'hidden',
+                  mb: 10,
+                  boxShadow: '0 16px 32px rgba(0,0,0,0.1)',
+                }}
+              >
+                <Box
+                  component="img"
+                  src={features[2].image}
+                  alt={features[3].title}
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                />
+                <Box
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: 'linear-gradient(to right, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)',
+                    display: 'flex',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Container>
+                  <m.div variants={varFade().inUp}>
+                    <Box sx={{ maxWidth: { xs: '100%', md: '50%' }, p: { xs: 3, md: 0 } }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
                         <Box
                           sx={{
-                            position: 'absolute',
-                            width: 80,
-                            height: 80,
-                            top: '10%',
-                            right: index % 2 === 0 ? '10%' : 'auto',
-                            left: index % 2 === 0 ? 'auto' : '10%',
-                            borderRadius: 2,
-                            background: `${feature.color}15`,
-                            animation: 'float 6s infinite ease-in-out',
-                            animationDelay: '1s',
-                            display: { xs: 'none', md: 'block' },
+                            width: 56,
+                            height: 56,
+                            borderRadius: '12px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            background: `${features[2].color}20`,
+                            mr: 2,
                           }}
-                        />
-                      )}
-                      
-                    </IllustrationContainer>
-                  </Grid>
-                </FeatureRowStyle>
-              </m.div>
-            ))}
+                        >
+                          <Iconify
+                            icon={features[3].icon}
+                            width={28}
+                            height={28}
+                            sx={{ color: 'white' }}
+                          />
+                        </Box>
+                        <Typography variant="h4" sx={{ color: 'white', fontWeight: 600 }}>
+                          {features[3].title}
+                        </Typography>
+                      </Box>
+                      <Typography variant="h6" sx={{ color: 'white', mb: 2, fontWeight: 300 }}>
+                        {features[3].description}
+                      </Typography>
+                    </Box>
+                    </m.div>
+                  </Container>
+                </Box>
+              </Box>
+            </m.div>
+
           </ContentStyle>
         </Container>
       </RootStyle>
