@@ -13,7 +13,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@name-not-decided/shared-types": ["shared-types/src/index.ts"]
+    },
     "esModuleInterop": true
   },
   "files": [],

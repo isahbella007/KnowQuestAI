@@ -1,14 +1,20 @@
-import express from 'express';
+import { logger } from './utils/helpers/logger';
+import { handleSignals } from './utils/helpers/gracefulShutdown';
+import { config } from './config';
+import app from './app';
 
-const host = process.env.HOST ?? 'localhost';
-const port = process.env.PORT ? Number(process.env.PORT) : 3000;
+const startServer = async () => {
+  try {
+    console.log('we called the port')
+    const port = config.port || 3000;
+    const server = app.listen(port, () => {
+      logger.info(`Server running on port http://localhost:${port}`);
+    });
+    handleSignals(server);
+  } catch (error) {
+    logger.error('Failed to start server:', error);
+    process.exit(1);
+  }
+};
 
-const app = express();
-
-app.get('/', (req, res) => {
-  res.send({ message: 'Hello API' });
-});
-
-app.listen(port, host, () => {
-  console.log(`[ ready ] http://${host}:${port}`);
-});
+startServer();

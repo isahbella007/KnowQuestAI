@@ -1,0 +1,11 @@
+html {
+  font-family: var(--font-poppins), var(--font-montserrat), sans-serif;
+}
+
+body {
+  font-family: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
