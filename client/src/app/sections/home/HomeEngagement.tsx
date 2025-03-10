@@ -86,12 +86,13 @@ export default function HomeEngagementCTA() {
   // Form state
   const [formData, setFormData] = useState({
     feedback: '',
+    feedbackOption: 'select', // New field for dropdown selection
     email: '',
     phone: '',
   });
   
   const [errors, setErrors] = useState({
-    // feedback: false,
+    feedbackOption: false,
     email: false,
     phone: false
   });
@@ -100,10 +101,19 @@ export default function HomeEngagementCTA() {
 
   const isFormValid = () => {
     // At least one field must be filled
-    if (!formData.feedback.trim() && !formData.email && !formData.phone) {
-      return false;
+    // if (!formData.feedback.trim() && !formData.email && !formData.phone) {
+    //   return false;
+    // }
+
+    if(formData.feedbackOption === 'select' && !formData.email && !formData.phone){ 
+      return false
     }
     
+    // If "other" is selected, feedback must be provided
+    if (formData.feedbackOption === 'other' && !formData.feedback.trim()) {
+      return false;
+    }
+
     // If email is provided, it must be valid
     if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
       return false;
@@ -113,6 +123,9 @@ export default function HomeEngagementCTA() {
     if (formData.phone && !/^\d{11}$/.test(formData.phone)) {
       return false;
     }
+    // if(formData.feedbackOption !== 'select' && !formData.email && !formData.phone){ 
+    //   return false
+    // }
     
     return true;
   };
@@ -125,13 +138,13 @@ export default function HomeEngagementCTA() {
     }));
     
     // Validate in real-time
-    // if (name === 'feedback') {
-    //   setErrors(prev => ({
-    //     ...prev,
-    //     feedback: !value.trim()
-    //   }));
-    // } 
-    if (name === 'email') {
+    if (name === 'feedbackOption') {
+      setErrors(prev => ({
+        ...prev,
+        feedbackOption: value === 'select'
+      }));
+    }
+    else if (name === 'email') {
       setErrors(prev => ({
         ...prev,
         email: value ? !/^\S+@\S+\.\S+$/.test(value) : false
@@ -150,6 +163,7 @@ export default function HomeEngagementCTA() {
     // Simple validation
     const newErrors = {
       // feedback: false,
+      feedbackOption: false,
       email: formData.email ? !/\S+@\S+\.\S+/.test(formData.email) : false,
       phone: formData.phone ? !/^\d{11}$/.test(formData.phone) : false,
     };
@@ -160,7 +174,12 @@ export default function HomeEngagementCTA() {
     if (isFormValid()) {
       // Here you would typically send the data to your backend
       const formDataToSend = new FormData()
-      formDataToSend.append('entry.270363763', formData.feedback); // Replace with your field ID
+      // Send the appropriate feedback based on selection
+      if (formData.feedbackOption === 'other') {
+        formDataToSend.append('entry.270363763', formData.feedback);
+      } else {
+        formDataToSend.append('entry.270363763', formData.feedbackOption);
+      }
       formDataToSend.append('entry.1611001331', formData.email);    // Replace with your field ID
       formDataToSend.append('entry.477518184', formData.phone);    // Replace with your field ID
       
@@ -176,6 +195,7 @@ export default function HomeEngagementCTA() {
       setTimeout(() => {
         setFormData({
           feedback: '',
+          feedbackOption: 'select',
           email: '',
           phone: '',
         });
@@ -329,28 +349,66 @@ export default function HomeEngagementCTA() {
                       ) : (
                         <form onSubmit={handleSubmit}>
                           <Stack spacing={3}>
-                            <Box>
+                          <Box>
                               <Typography variant="h6" sx={{ mb: 1 }}>
-                                What do you want to see in the platform?
+                                What would you like to see in the platform?
                               </Typography>
                               <TextField
+                                select
                                 fullWidth
-                                multiline
-                                rows={4}
-                                name="feedback"
-                                value={formData.feedback}
+                                name="feedbackOption"
+                                value={formData.feedbackOption}
                                 onChange={handleChange}
-                                placeholder="Share your ideas and feature requests..."
-                                // error={errors.feedback}
-                                // helperText={errors.feedback && "Please share your thoughts"}
+                                error={errors.feedbackOption}
+                                helperText={errors.feedbackOption && "Please select an option"}
+                                SelectProps={{
+                                  native: true,
+                                }}
                                 sx={{
                                   '& .MuiOutlinedInput-root': {
                                     borderRadius: 2,
                                   }
                                 }}
-                              />
+                              >
+                                <option value="select">Select an option</option>
+                                <option value="More learning topics & activities tailored for students 📖🎓">
+                                  More learning topics & activities tailored for students 📖🎓
+                                </option>
+                                <option value="A way for parents to stay updated on their child’s learning progress 📊👨‍👩‍👧">
+                                  A way for parents to stay updated on their child’s learning progress 📊👨‍👩‍👧
+                                </option>
+                                <option value="Options for learning with minimal internet usage 📶🚫">
+                                  Options for learning with minimal internet usage 📶🚫
+                                </option>
+                                <option value="other">Other (please specify)</option>
+                              </TextField>
                             </Box>
                             
+                            {/* Show text field only if "Other" is selected */}
+                            {formData.feedbackOption === 'other' && (
+                              <Box>
+                                <Typography variant="body2" sx={{ mb: 1 }}>
+                                  Please tell us what you'd like to see:
+                                </Typography>
+                                <TextField
+                                  fullWidth
+                                  multiline
+                                  rows={3}
+                                  name="feedback"
+                                  value={formData.feedback}
+                                  onChange={handleChange}
+                                  placeholder="Share your ideas and feature requests..."
+                                  error={formData.feedbackOption === 'other' && !formData.feedback.trim()}
+                                  helperText={formData.feedbackOption === 'other' && !formData.feedback.trim() && "Please share your thoughts"}
+                                  sx={{
+                                    '& .MuiOutlinedInput-root': {
+                                      borderRadius: 2,
+                                    }
+                                  }}
+                                />
+                              </Box>
+                            )}
+
                             <Box>
                               <Typography variant="h6" sx={{ mb: 1 }}>
                                 Email (optional)
