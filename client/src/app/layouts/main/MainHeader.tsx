@@ -103,7 +103,12 @@ export default function MainHeader() {
             <Button
               variant="contained"
               // target="_blank"
-              onClick={onOpenEmailWaitlist}
+              onClick={() => {
+                const section = document.getElementById('engagement-section');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               sx={{
                 backgroundColor: theme.palette.warning.main,
                 color: '#333333',

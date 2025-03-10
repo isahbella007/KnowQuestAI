@@ -1,0 +1,11 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Feedback Icon -->
+  <rect width="400" height="300" rx="20" fill="#F9FAFB"/>
+  <rect x="100" y="80" width="200" height="140" rx="10" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="2"/>
+  <circle cx="130" cy="110" r="10" fill="#90CAF9"/>
+  <circle cx="160" cy="110" r="10" fill="#90CAF9"/>
+  <circle cx="190" cy="110" r="10" fill="#90CAF9"/>
+  <rect x="120" y="140" width="160" height="10" rx="5" fill="#E0E0E0"/>
+  <rect x="120" y="160" width="120" height="10" rx="5" fill="#E0E0E0"/>
+  
+</svg>

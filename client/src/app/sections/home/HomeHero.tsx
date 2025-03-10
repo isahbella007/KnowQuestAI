@@ -319,7 +319,13 @@ export default function HomeHero() {
                 >
                   {isSoftLaunch ? (
                     <Button
-                      onClick={onOpenEmailWaitlist}
+                      // onClick={onOpenEmailWaitlist}
+                      onClick={() => {
+                        const section = document.getElementById('engagement-section');
+                        if (section) {
+                          section.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
                       size="large"
                       variant="contained"
                       fullWidth={!isMdUp} // Full width on mobile

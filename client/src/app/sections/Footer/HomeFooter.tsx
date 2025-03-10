@@ -128,7 +128,7 @@ export default function HomeFooter() {
               {/* Logo and description */}
               <Grid item xs={12} md={4}>
                 <m.div variants={varFade().inUp}>
-                  <LogoStyle src="/assets/logo.png" alt="Logo" />
+                  {/* <LogoStyle src="/assets/logo.png" alt="Logo" /> */}
                   <Typography variant="h5" sx={{ color: 'text.secondary', mb: 2, maxWidth: 400, fontWeight: 'normal' }}>
                     Transforming learning into exciting challenges for children in a safe, parent-controlled environment.
                   </Typography>

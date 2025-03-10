@@ -186,7 +186,7 @@ export default function HomeEngagementCTA() {
 
   return (
     <MotionContainer>
-      <RootStyle>
+      <RootStyle id="engagement-section">
         {/* Decorative elements */}
         <FloatingElement 
           sx={{ 
@@ -244,8 +244,8 @@ export default function HomeEngagementCTA() {
                       <Box
                         sx={{
                           position: 'absolute',
-                          width: 80,
-                          height: 80,
+                          width: 100,
+                          height: 100,
                           top: '10%',
                           left: '15%',
                           borderRadius: 2,

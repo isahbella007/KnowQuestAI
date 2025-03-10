@@ -13,7 +13,6 @@ export interface Props extends IProps {
 }
 
 export default function MotionContainer({ animate, action = false, children, ...other }: Props) {
-  console.log('In the motion container')
   if (action) {
     return (
       <Box

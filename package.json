@@ -6,7 +6,11 @@
   "scripts": {
     "start": "nx run-many --target=serve --all --parallel",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test", 
+    "build:client": "cd client && nx build client",
+    "start:client": "nx serve client",
+    "build:server": "cd server && nx build server",
+    "start:server": "cd server && nx serve server"
   },
   "nx": {
     "includedScripts": []
