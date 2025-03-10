@@ -62,9 +62,9 @@ export default function HomeFuture() {
     {
       icon: 'mdi:robot',
       color: '#2196F3',
-      title: 'AI-Powered Smart Learning',
+      title: 'Smart Learning',
       subtitle: 'Personalized Learning Paths with AI',
-      description: 'AI tailors learning experiences based on your child\'s strengths and weaknesses. Smart recommendations ensure progress at their own pace.',
+      description: 'Tailored learning experiences based on your child\'s strengths and weaknesses. Smart recommendations ensure progress at their own pace.',
       image: '/assets/learning.jpeg',
     },
     {
@@ -86,9 +86,9 @@ export default function HomeFuture() {
     {
       icon: 'mdi:account-group',
       color: '#FF5722',
-      title: 'Structured Challenges & Collaboration',
+      title: 'Engaging Learning Activities',
       subtitle: 'Host & Join Learning Challenges with Friends!',
-      description: 'Kids can create and participate in fun challenges. Encourages collaboration and interactive learning.',
+      description: 'Fun and interactive learning experiences designed to keep kids motivated. Whether practicing new skills or collaborating with others, every activity helps them grow.',
       image: '/assets/learning.jpeg',
     },
   ];
@@ -152,7 +152,7 @@ export default function HomeFuture() {
                     fontWeight: 'normal'
                   }}
                 >
-                  Designed to boost your child's learning experience with AI, gamification, and structured challenges.
+                 A new way to keep your child engaged with exciting challenges, progress tracking, and interactive learning all in a safe, parent-controlled space.
                 </Typography>
               </Box>
             </m.div>

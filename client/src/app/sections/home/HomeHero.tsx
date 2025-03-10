@@ -277,7 +277,7 @@ export default function HomeHero() {
                     }
                   }}
                 >
-                  Turn Learning Into an Exciting Challenge for Your Child!
+                   Make Learning an Adventure!
                 </Typography>
               </m.div>
               
@@ -298,7 +298,7 @@ export default function HomeHero() {
                    
                   }}
                 >
-                  Fun, engaging, and educational events where children compete, earn XP, and unlock badges—all in a safe, parent-controlled environment!
+                  Turn education into an exciting challenge—where kids compete, earn XP, and level up in a secure, parent-controlled space.
                 </Typography>
               </m.div>
               

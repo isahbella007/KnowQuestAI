@@ -289,7 +289,7 @@ export default function HomeEngagementCTA() {
                           textAlign: { xs: 'center', md: 'left' },
                         }}
                       >
-                        Help Us Build the Best Learning Experience!
+                        What would make learning exciting for your child?
                       </Typography>
                       <Typography
                         variant="h6"

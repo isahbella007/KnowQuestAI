@@ -80,8 +80,8 @@ export default function HomeSpecial() {
     {
       icon: 'mdi:book-open-page-variant',
       color: '#4CAF50',
-      title: 'Host & Join Learning Challenges',
-      description: 'Kids can create their own learning events or join others in fun educational challenges.',
+      title: 'Engaging & Interactive Learning',
+      description: 'Kids participate in exciting learning experiences that encourage curiosity, collaboration, and progress.',
     },
     // {
     //   icon: 'mdi:trophy-award',
@@ -92,7 +92,7 @@ export default function HomeSpecial() {
     {
       icon: 'mdi:shield-check',
       color: '#6A0DAD',
-      title: 'No Chat, 100% Parent-Controlled',
+      title: 'Safe & Parent-Controlled',
       description: 'A safe environment with complete parental oversight and no direct messaging between children.',
     },
     {
