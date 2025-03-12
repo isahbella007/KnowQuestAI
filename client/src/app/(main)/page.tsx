@@ -17,7 +17,7 @@ export default function Index() {
 
           <HomeFuture/>
           
-          {/* <HomeSpecial/> */}
+          <HomeSpecial/>
 
           <HomeEngagementCTA/>
          

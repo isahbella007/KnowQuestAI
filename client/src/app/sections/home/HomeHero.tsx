@@ -20,6 +20,7 @@ import useFeatureFlag from '@/app/hooks/useFeatureFlag';
 import { PATH_AUTH } from '@/app/routes/path';
 import Iconify from '@/app/components/Iconify';
 import { useEffect, useState } from 'react';
+import JoinWaitListDialog from '../waitlist/JoinWaitListDialog';
 
 // Styled components with improved layout
 const RootStyle = styled(Box)(({ theme }) => ({
@@ -197,6 +198,7 @@ export default function HomeHero() {
 
   return (
     <MotionContainer>
+      <JoinWaitListDialog open={openEmailWaitlist} onClose={onCloseEmailWaitlist} />
       <RootStyle>
         {/* Background gradient */}
         <HeroBackgroundStyle />
@@ -319,13 +321,13 @@ export default function HomeHero() {
                 >
                   {isSoftLaunch ? (
                     <Button
-                      // onClick={onOpenEmailWaitlist}
-                      onClick={() => {
-                        const section = document.getElementById('engagement-section');
-                        if (section) {
-                          section.scrollIntoView({ behavior: 'smooth' });
-                        }
-                      }}
+                      onClick={onOpenEmailWaitlist}
+                      // onClick={() => {
+                      //   const section = document.getElementById('engagement-section');
+                      //   if (section) {
+                      //     section.scrollIntoView({ behavior: 'smooth' });
+                      //   }
+                      // }}
                       size="large"
                       variant="contained"
                       fullWidth={!isMdUp} // Full width on mobile

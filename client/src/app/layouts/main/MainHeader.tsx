@@ -12,6 +12,7 @@ import useToggle from '@/app/hooks/useToggle';
 import { HEADER } from '@/config';
 import cssStyles from '@/app/utils/cssStyles';
 import useOffSetTop from '@/app/utils/useOffSetTop';
+import JoinWaitListDialog from '@/app/sections/waitlist/JoinWaitListDialog';
 
 
 const ToolbarStyle = styled(Toolbar)(({ theme }) => ({
@@ -60,7 +61,7 @@ export default function MainHeader() {
 
   return (
     <AppBar sx={{ boxShadow: 0, bgcolor: 'transparent' }}>
-      {/* <JoinWaitlistDialog open={openEmailWaitlist} onClose={onCloseEmailWaitlist} /> */}
+      <JoinWaitListDialog open={openEmailWaitlist} onClose={onCloseEmailWaitlist} />
       <ToolbarStyle
         disableGutters
         sx={{
@@ -103,12 +104,7 @@ export default function MainHeader() {
             <Button
               variant="contained"
               // target="_blank"
-              onClick={() => {
-                const section = document.getElementById('engagement-section');
-                if (section) {
-                  section.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
+              onClick={onOpenEmailWaitlist}
               sx={{
                 backgroundColor: theme.palette.warning.main,
                 color: '#333333',
