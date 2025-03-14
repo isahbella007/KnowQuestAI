@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 declare global {
     interface Window {
@@ -10,22 +10,31 @@ declare global {
     }
   }
 
+  // Create a separate component that uses useSearchParams
+function GoogleAnalyticsTracking({ GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID?: string }) {
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const enableGATracking = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS;
   
-export default function GoogleAnalytics({ GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID?: string }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const enableGATracking = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS
+    useEffect(() => {
+        try {
+          if (enableGATracking && pathname && window.gtag) {
+            window.gtag('config', GA_MEASUREMENT_ID, {
+              page_path: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
+            });
+          }
+        } catch (error) {
+          console.error('Google Analytics tracking error:', error);
+        }
+    }, [pathname, searchParams, GA_MEASUREMENT_ID, enableGATracking]);
+  
+    return null;
+}
 
-//   console.log('enable tracking is', enableGATracking)
-//   console.log('GA_MEASUREMENT_ID is', GA_MEASUREMENT_ID)
-  useEffect(() => {
-    console.log('enable tracking is', enableGATracking)
-    if(enableGATracking && pathname && window.gtag){ 
-        window.gtag('config', GA_MEASUREMENT_ID, {
-            page_path: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
-          });
-    }
-  }, [pathname, searchParams, GA_MEASUREMENT_ID]);
+  
+// Main component that doesn't directly use useSearchParams
+export default function GoogleAnalytics({ GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID }: { GA_MEASUREMENT_ID?: string }) {
+  const enableGATracking = process.env.NEXT_PUBLIC_ENABLE_ANALYTICS;
 
   if (!enableGATracking) {
     return null;
@@ -51,6 +60,10 @@ export default function GoogleAnalytics({ GA_MEASUREMENT_ID = process.env.NEXT_P
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <GoogleAnalyticsTracking GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
+      </Suspense>
     </>
   );
+
 } 
