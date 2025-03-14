@@ -17,6 +17,10 @@ const nextConfig = {
     // Add any custom webpack configurations here
     return config;
   },
+  env:{ 
+    NEXT_PUBLIC_ENABLE_ANALYTICS:process.env.NEXT_PRIVATE_ENABLE_ANALYTICS, 
+    NEXT_PUBLIC_GA_MEASUREMENT_ID:process.env.NEXT_PRIVATE_GA_MEASUREMENT_ID
+  }
 };
 
 const plugins = [
