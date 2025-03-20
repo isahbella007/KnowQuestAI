@@ -37,9 +37,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${poppins.className} ${montserrat.className}`}>
-        <GoogleTagManager />
+    <html lang="en" className={`${poppins.className} ${montserrat.className}`}> 
       <body>
+        <GoogleTagManager />
         <GoogleTagManagerNoScript />
         <GoogleAnalytics/>
           <AuthProvider>

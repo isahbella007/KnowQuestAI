@@ -23,6 +23,7 @@ function GoogleTagManagerTracking({ GTM_ID }: { GTM_ID?: string }) {
           page: pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : ''),
         });
       }
+      
     } catch (error) {
       console.error('Google Tag Manager tracking error:', error);
     }
