@@ -83,7 +83,7 @@ const DialogBackground = styled(DialogContent)(({ theme }: { theme: Theme }) => 
     };
   
     const handleCopyClick = () => {
-      navigator.clipboard.writeText(`https://name-not-decided.vercel.app/`);
+      navigator.clipboard.writeText(`https://www.knowquestai.com/`);
       setCopied(true);
       // alert('Link copied to clipboard');
     };
@@ -125,7 +125,7 @@ const DialogBackground = styled(DialogContent)(({ theme }: { theme: Theme }) => 
                 <OutlinedInput
                   type={'text'}
                   fullWidth
-                  value='https://name-not-decided.vercel.app/'
+                  value='https://www.knowquestai.com/'
                   sx={{
                     backgroundColor: 'rgba(255, 255, 255, 0.1)',
                     borderColor: 'rgba(255, 255, 255, 0.3)',
