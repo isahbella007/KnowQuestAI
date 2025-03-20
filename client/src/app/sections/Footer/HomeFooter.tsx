@@ -91,11 +91,12 @@ export default function HomeFooter() {
   ];
 
   const socialLinks = [
-    { icon: 'mdi:twitter', href: '#', color: '#1DA1F2' },
-    { icon: 'mdi:instagram', href: '#', color: '#E1306C' },
-    { icon: 'mdi:facebook', href: '#', color: '#4267B2' },
-    { icon: 'mdi:linkedin', href: '#', color: '#0077B5' },
+    { icon: 'mdi:youtube', href: 'https://youtube.com/@knowquestai?si=cTwMjRjHEzdaEGgG', color: '#EE1D52' },
+    { icon: 'mdi:instagram', href: 'https://www.instagram.com/knowquestai?igsh=MW1yeWN6NDhpaG1zMA==', color: '#E1306C' },
+    { icon: 'mdi:facebook', href: 'https://www.facebook.com/share/16DtFFreqg/', color: '#4267B2' },
+    { icon: 'mdi:tiktok', href: 'https://www.tiktok.com/@knowquestai?_t=ZM-8upjyv2PK4t&_r=1', color: '#0077B5' }
   ];
+  
 
   return (
     <MotionContainer>

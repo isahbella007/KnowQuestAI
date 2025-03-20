@@ -11,6 +11,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import './global.css'
 import { Poppins, Montserrat } from 'next/font/google';
 import GoogleAnalytics from "./components/GoogleAnalytics"
+import GoogleTagManager, { GoogleTagManagerNoScript } from "./components/GoogleTagManager"
 
 // Load fonts
 const poppins = Poppins({
@@ -37,24 +38,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${poppins.className} ${montserrat.className}`}>
+        <GoogleTagManager />
       <body>
-      <GoogleAnalytics/>
-        <AuthProvider>
-          <ReduxProvider store={store}>
-              <SettingsProvider defaultSettings={defaultSettings}>
-                  <MotionLazyContainer>
-                      <ThemeProvider>
-                          <GlobalGuard>
-                              {/* <ProgressBar /> */}
-                            
-                              {children}
-                          </GlobalGuard>
-                      </ThemeProvider>
-                  </MotionLazyContainer>
-              </SettingsProvider>
-          </ReduxProvider>
-        </AuthProvider>
-      
+        <GoogleTagManagerNoScript />
+        <GoogleAnalytics/>
+          <AuthProvider>
+            <ReduxProvider store={store}>
+                <SettingsProvider defaultSettings={defaultSettings}>
+                    <MotionLazyContainer>
+                        <ThemeProvider>
+                            <GlobalGuard>
+                                {/* <ProgressBar /> */}
+                              
+                                {children}
+                            </GlobalGuard>
+                        </ThemeProvider>
+                    </MotionLazyContainer>
+                </SettingsProvider>
+            </ReduxProvider>
+          </AuthProvider>
       </body>
     </html>
   )
