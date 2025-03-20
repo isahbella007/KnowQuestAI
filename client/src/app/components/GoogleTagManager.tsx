@@ -41,8 +41,17 @@ export default function GoogleTagManager({ GTM_ID = process.env.NEXT_PUBLIC_GTM_
 
   return (
     <>
+        <noscript>
+            <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+            />
+        </noscript>
+
       <Script
-        id="google-tag-manager"
+        id="gtm-script"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -60,24 +69,4 @@ export default function GoogleTagManager({ GTM_ID = process.env.NEXT_PUBLIC_GTM_
     </>
   );
 
-}
-
-// NoScript component that goes in the body
-export function GoogleTagManagerNoScript({ GTM_ID = process.env.NEXT_PUBLIC_GTM_ID }: { GTM_ID?: string }) {
-    const enableTracking = process.env.NEXT_PUBLIC_GTM_ID;
-  
-    if (!enableTracking) {
-      return null;
-    }
-  
-    return (
-      <noscript>
-        <iframe
-          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-          height="0"
-          width="0"
-          style={{ display: 'none', visibility: 'hidden' }}
-        />
-      </noscript>
-    )
 }
