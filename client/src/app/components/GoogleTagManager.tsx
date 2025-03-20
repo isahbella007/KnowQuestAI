@@ -31,8 +31,8 @@ function GoogleTagManagerTracking({ GTM_ID }: { GTM_ID?: string }) {
   return null;
 }
 
-export default function GoogleTagManager({ GTM_ID = process.env.NEXT_PRIVATE_GTM_ID }: { GTM_ID?: string }) {
-  const enableTracking = process.env.NEXT_PRIVATE_GTM_ID;
+export default function GoogleTagManager({ GTM_ID = process.env.NEXT_PUBLIC_GTM_ID }: { GTM_ID?: string }) {
+  const enableTracking = process.env.NEXT_PUBLIC_GTM_ID;
 
   if (!enableTracking) {
     return null;
@@ -62,8 +62,8 @@ export default function GoogleTagManager({ GTM_ID = process.env.NEXT_PRIVATE_GTM
 }
 
 // NoScript component that goes in the body
-export function GoogleTagManagerNoScript({ GTM_ID = process.env.NEXT_PRIVATE_GTM_ID }: { GTM_ID?: string }) {
-    const enableTracking = process.env.NEXT_PRIVATE_GTM_ID;
+export function GoogleTagManagerNoScript({ GTM_ID = process.env.NEXT_PUBLIC_GTM_ID }: { GTM_ID?: string }) {
+    const enableTracking = process.env.NEXT_PUBLIC_GTM_ID;
   
     if (!enableTracking) {
       return null;
